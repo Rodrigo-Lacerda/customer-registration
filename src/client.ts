@@ -1,8 +1,8 @@
 export class Client {
     constructor(
-        private rg: number,
-        private name: string,
-        private age: number,
+        private readonly rg: number,
+        private readonly name: string,
+        private readonly age: number,
         private points: number
     ){}
 

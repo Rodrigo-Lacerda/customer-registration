@@ -1,7 +1,6 @@
 import { Product } from "./product";
-import * as dbFakeProducts from "./dbProducts";
 
-export class ProductList {
+export class FavoriteProductList {
     private products: Product[] = []
 
     constructor(
@@ -16,13 +15,10 @@ export class ProductList {
             console.log(product)
         })
 
-        dbFakeProducts.DbProducts.forEach((p) => {
-            console.log(p)
-        })
     }
 }
 
-const p1 = new Product("caneta", 1.00, "caneta preta")
-const pl = new ProductList()
-pl.addProductToList(p1)
-pl.getProductList()
+// const p1 = new Product("caneta", 1.00, "caneta preta")
+// const pl = new ProductList()
+// pl.addProductToList(p1)
+// pl.getProductList()

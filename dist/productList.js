@@ -24,7 +24,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductList = void 0;
-const product_1 = require("./product");
 const dbFakeProducts = __importStar(require("./dbProducts"));
 class ProductList {
     constructor() {
@@ -43,7 +42,7 @@ class ProductList {
     }
 }
 exports.ProductList = ProductList;
-const p1 = new product_1.Product("caneta", 1.00, "caneta preta");
-const pl = new ProductList();
-pl.addProductToList(p1);
-pl.getProductList();
+// const p1 = new Product("caneta", 1.00, "caneta preta")
+// const pl = new ProductList()
+// pl.addProductToList(p1)
+// pl.getProductList()

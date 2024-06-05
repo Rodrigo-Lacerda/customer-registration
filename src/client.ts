@@ -7,7 +7,8 @@ export class Client {
         private readonly age: number,
         private points: number = 0,
 
-        private requestList: Product[] = []
+        private requestList: Product[] = [],
+        private favoriteList: Product[] = [],
     ){}
 
     public getPoints(): number {
@@ -21,6 +22,16 @@ export class Client {
     public getMyRequests(): void {
         this.requestList.forEach((p) => {
             console.log(p)
+        })
+    }
+
+    public addToFavorite(newProduct: Product): void {
+        this.favoriteList.push(newProduct)
+    }
+
+    public getFavoriteProducts(): void {
+        this.favoriteList.forEach((pf) => {
+            console.log(pf)
         })
     }
 

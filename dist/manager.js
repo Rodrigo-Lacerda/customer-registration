@@ -17,7 +17,14 @@ class Manager {
         });
     }
     order(newOrder) {
-        this.client.requests(newOrder);
+        this.client.shoppingCart(newOrder);
+    }
+    // Pegar o cliente na lista e mostrar o carinho de compra dele.
+    addProductToFavorite(product, index) {
+        console.log(this.clientList[index].addToFavorite(product));
+    }
+    getListOfFavoriteProducts(index) {
+        this.clientList[index].getFavoriteProducts();
     }
 }
 exports.Manager = Manager;
@@ -25,7 +32,10 @@ const r1 = new client_1.Client(1234, "Rodrigo", 30);
 const r2 = new client_1.Client(1234, "Lucas", 20);
 const m1 = new Manager(r1);
 const p = new product_1.Product("copo", 10, "copo de vidro");
+const pf = new product_1.Product("copo2", 15, "copo de vidro 2");
 m1.createClient(r1);
 m1.createClient(r2);
 m1.order(p);
+console.log(m1.addProductToFavorite(pf, 0));
 console.log(m1.getClientList());
+console.log(m1.getListOfFavoriteProducts(0));

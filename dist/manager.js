@@ -7,6 +7,7 @@ class Manager {
     constructor(client) {
         this.client = client;
         this.clientList = [];
+        this.kartList = [];
     }
     createClient(newClient) {
         this.clientList.push(newClient);
@@ -19,12 +20,20 @@ class Manager {
     order(newOrder) {
         this.client.shoppingCart(newOrder);
     }
-    // Pegar o cliente na lista e mostrar o carinho de compra dele.
     addProductToFavorite(product, index) {
         console.log(this.clientList[index].addToFavorite(product));
     }
     getListOfFavoriteProducts(index) {
         this.clientList[index].getFavoriteProducts();
+    }
+    // adicionando produtos ao carrinho.
+    addProductToKart(newProduct) {
+        this.kartList.push(newProduct);
+    }
+    getProductsToKart() {
+        this.kartList.forEach((c) => {
+            console.log(c);
+        });
     }
 }
 exports.Manager = Manager;
@@ -33,9 +42,14 @@ const r2 = new client_1.Client(1234, "Lucas", 20);
 const m1 = new Manager(r1);
 const p = new product_1.Product("copo", 10, "copo de vidro");
 const pf = new product_1.Product("copo2", 15, "copo de vidro 2");
+const pc = new product_1.Product("placa de video", 600, "amd rx580 8Gb");
 m1.createClient(r1);
 m1.createClient(r2);
 m1.order(p);
+m1.addProductToKart(pc);
+m1.addProductToKart(p);
+m1.addProductToKart(pf);
 console.log(m1.addProductToFavorite(pf, 0));
 console.log(m1.getClientList());
 console.log(m1.getListOfFavoriteProducts(0));
+console.log(m1.getProductsToKart());

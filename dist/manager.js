@@ -20,6 +20,19 @@ class Manager {
     order(newOrder) {
         this.client.shoppingCart(newOrder);
     }
+    finalizeOrder(discount = 0) {
+        let amount = 0;
+        let prods = [];
+        let value = discount;
+        this.kartList.forEach((product) => {
+            amount += product.price;
+            prods.push(product.name);
+        });
+        if (value > 0) {
+            amount -= (value * amount) / 100;
+        }
+        console.log(`Valor Total do pedido ${amount}, com desconto: ${(value * amount) / 100}`);
+    }
     addProductToFavorite(product, index) {
         console.log(this.clientList[index].addToFavorite(product));
     }
@@ -48,13 +61,15 @@ const pd = new product_1.Product("teclado", 100, "teclado mecanico");
 const pf = new product_1.Product("copo2", 15, "copo de vidro 2");
 m1.createClient(r1);
 m1.createClient(r2);
-// m1.order(p)
-// m1.addProductToKart(pc)
-// m1.addProductToKart(p)
-// m1.addProductToKart(pf)
+m1.order(p);
+m1.addProductToKart(pc);
+m1.addProductToKart(p);
+m1.addProductToKart(pf);
 m1.addProductToFavorite(pd, 0);
 m1.addProductToFavorite(p, 0);
 m1.addProductToFavorite(pf, 0);
 m1.addProductToFavorite(pc, 0);
 m1.removeToFavorite(0, pf);
-console.log(m1.getListOfFavoriteProducts(0));
+// console.log(m1.getListOfFavoriteProducts(0))
+console.log(m1.getProductsToKart());
+console.log(m1.finalizeOrder(40));

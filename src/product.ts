@@ -1,7 +1,7 @@
 export class Product {
     constructor(
         public name: string,
-        private price: number,
+        public readonly price: number,
         private descripition: string
     ){}
 }

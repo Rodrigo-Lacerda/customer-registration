@@ -25,6 +25,23 @@ export class Manager {
         this.client.shoppingCart(newOrder)
     }
 
+    public finalizeOrder(discount: number = 0): void {
+        let amount: number = 0
+        let prods: string[] = []
+        let value: number = discount
+
+        this.kartList.forEach((product) => {
+            amount += product.price
+            prods.push(product.name)
+        })
+
+        if(value > 0 ) {
+            amount -= (value*amount) / 100
+        }
+
+        console.log(`Valor Total do pedido ${amount}, com desconto: ${(value*amount) / 100}`)
+    }
+
     public addProductToFavorite(product: Product, index: number): void {
         console.log(this.clientList[index].addToFavorite(product))
     }
@@ -46,6 +63,7 @@ export class Manager {
             console.log(c)
         })
     }
+
 }
 
 const r1 = new Client(1234, "Rodrigo", 30)
@@ -70,4 +88,7 @@ m1.addProductToFavorite(pc, 0)
 
 m1.removeToFavorite(0, pf)
 
-console.log(m1.getListOfFavoriteProducts(0))
+// console.log(m1.getListOfFavoriteProducts(0))
+console.log(m1.getProductsToKart())
+
+console.log(m1.finalizeOrder(40))

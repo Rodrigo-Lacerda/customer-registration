@@ -29,6 +29,15 @@ export class Client {
         this.favoriteList.push(newProduct)
     }
 
+    public removeFavorite(product: Product): void {
+        let newList = this.favoriteList.filter((prodName) => prodName.name !== product.name)
+        
+        if(this.favoriteList.length !== 0) {
+            this.favoriteList = []
+        }
+        this.favoriteList = newList
+    }
+
     public getFavoriteProducts(): void {
         this.favoriteList.forEach((pf) => {
             console.log(pf)

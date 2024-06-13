@@ -29,8 +29,8 @@ export class Manager {
         console.log(this.clientList[index].addToFavorite(product))
     }
 
-    public removeToFavorite(index: number): void {
-
+    public removeToFavorite(index: number, product: Product): void {
+        this.clientList[index].removeFavorite(product)
     }
 
     public getListOfFavoriteProducts(index: number): void {
@@ -52,15 +52,22 @@ const r1 = new Client(1234, "Rodrigo", 30)
 const r2 = new Client(1234, "Lucas", 20)
 const m1 = new Manager(r1)
 const p = new Product("copo", 10, "copo de vidro")
-const pf = new Product("copo2", 15, "copo de vidro 2")
 const pc = new Product("placa de video", 600, "amd rx580 8Gb");
+const pd = new Product("teclado", 100, "teclado mecanico")
+const pf = new Product("copo2", 15, "copo de vidro 2")
 m1.createClient(r1)
 m1.createClient(r2)
 m1.order(p)
+
 m1.addProductToKart(pc)
 m1.addProductToKart(p)
 m1.addProductToKart(pf)
-console.log(m1.addProductToFavorite(pf, 0))
-console.log(m1.getClientList())
+
+m1.addProductToFavorite(pd, 0)
+m1.addProductToFavorite(p, 0)
+m1.addProductToFavorite(pf, 0)
+m1.addProductToFavorite(pc, 0)
+
+m1.removeToFavorite(0, pf)
+
 console.log(m1.getListOfFavoriteProducts(0))
-console.log(m1.getProductsToKart())

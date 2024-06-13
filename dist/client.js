@@ -24,6 +24,13 @@ class Client {
     addToFavorite(newProduct) {
         this.favoriteList.push(newProduct);
     }
+    removeFavorite(product) {
+        let newList = this.favoriteList.filter((prodName) => prodName.name !== product.name);
+        if (this.favoriteList.length !== 0) {
+            this.favoriteList = [];
+        }
+        this.favoriteList = newList;
+    }
     getFavoriteProducts() {
         this.favoriteList.forEach((pf) => {
             console.log(pf);

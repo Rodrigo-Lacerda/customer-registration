@@ -24,10 +24,3 @@ export class Cheking {
     }
 
 }
-
-const t = new Product("placa de video", 600, "amd rx580 8Gb")
-const t2 = new Product("mouse", 50, "mouse sem fio")
-const p = new Cheking()
-p.productExist(t2)
-
-

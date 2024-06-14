@@ -1,11 +1,12 @@
-import { Client } from "./client"
-import * as dbFakeProducts from "./dbProducts";
+import { Client } from "./client";
 import { Product } from "./product";
+import { v1 } from "uuid";
 
 
 export class Manager {
     private clientList: Client[] = []
     private kartList: Product[] = []
+    private completedOrders: any[] = []
 
     constructor(
         private client: Client,
@@ -33,19 +34,35 @@ export class Manager {
 
     public finalizeOrder(discount: number = 0): void {
         let amount: number = 0
-        let prods: string[] = []
+        let productsInKart: string[] = []
         let value: number = discount
+        let idv1 = v1()
+        let index = 1
+
+        console.log(`ID do pedido: ${idv1}`)
+        this.completedOrders.push({ID  : idv1})
 
         this.kartList.forEach((product) => {
             amount += product.price
-            prods.push(product.name)
+            productsInKart.push(product.name)
+            this.completedOrders.push(product)
         })
-
         if(value > 0 ) {
             amount -= (value*amount) / 100
         }
+    
+        productsInKart.forEach((p) => {
+            console.log(`***** ${index}: ${p}`)
+            index++
+        })
 
-        console.log(`Valor Total do pedido ${amount}, com desconto: ${(value*amount) / 100}`)
+        this.completedOrders.push({value : amount})
+        console.log(`Valor Total do pedido R$${amount} Reais.`)
+
+    }
+
+    public cusultOrder(): String[] {
+        return this.completedOrders
     }
 
     public addProductToFavorite(product: Product, index: number): void {
@@ -72,31 +89,3 @@ export class Manager {
 
 }
 
-const r1 = new Client(1234, "Rodrigo", 30)
-const r2 = new Client(1234, "Lucas", 20)
-const m1 = new Manager(r1)
-const p = new Product("copo", 10, "copo de vidro")
-const pc = new Product("placa de video", 600, "amd rx580 8Gb");
-const pd = new Product("teclado", 100, "teclado mecanico")
-const pf = new Product("copo2", 15, "copo de vidro 2")
-
-m1.createClient(r1)
-m1.createClient(r2)
-
-m1.order(p)
-
-m1.addProductToKart(pc)
-m1.addProductToKart(p)
-m1.addProductToKart(pf)
-
-m1.addProductToFavorite(pd, 0)
-m1.addProductToFavorite(p, 0)
-m1.addProductToFavorite(pf, 0)
-m1.addProductToFavorite(pc, 0)
-
-m1.removeToFavorite(0, pf)
-
-// console.log(m1.getListOfFavoriteProducts(0))
-console.log(m1.getProductsToKart())
-
-console.log(m1.finalizeOrder(40))

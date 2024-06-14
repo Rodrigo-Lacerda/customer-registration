@@ -22,7 +22,13 @@ export class Manager {
     }
 
     public order(newOrder: Product): void {
-        this.client.shoppingCart(newOrder)
+        this.clientList.forEach((c) => {
+            if(c.isActive() !== true) {
+                throw new Error(`User blocked...`)                
+            }
+            this.client.shoppingCart(newOrder)
+        })
+
     }
 
     public finalizeOrder(discount: number = 0): void {
@@ -73,8 +79,10 @@ const p = new Product("copo", 10, "copo de vidro")
 const pc = new Product("placa de video", 600, "amd rx580 8Gb");
 const pd = new Product("teclado", 100, "teclado mecanico")
 const pf = new Product("copo2", 15, "copo de vidro 2")
+
 m1.createClient(r1)
 m1.createClient(r2)
+
 m1.order(p)
 
 m1.addProductToKart(pc)

@@ -2,16 +2,23 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Client = void 0;
 class Client {
-    constructor(rg, name, age, points = 0, requestList = [], favoriteList = []) {
+    constructor(rg, name, age, points = 0, active = true, requestList = [], favoriteList = []) {
         this.rg = rg;
         this.name = name;
         this.age = age;
         this.points = points;
+        this.active = active;
         this.requestList = requestList;
         this.favoriteList = favoriteList;
     }
     getPoints() {
         return this.points;
+    }
+    isActive() {
+        return this.active;
+    }
+    blocked() {
+        this.active = false;
     }
     shoppingCart(newRequest) {
         this.requestList.push(newRequest);

@@ -6,6 +6,7 @@ export class Client {
         private readonly name: string,
         private readonly age: number,
         private points: number = 0,
+        private active: boolean = true,
 
         private requestList: Product[] = [],
         private favoriteList: Product[] = [],
@@ -13,6 +14,14 @@ export class Client {
 
     public getPoints(): number {
         return this.points
+    }
+
+    public isActive(): boolean {
+        return this.active
+    }
+
+    public blocked(): void {
+        this.active = false
     }
 
     public shoppingCart(newRequest: Product): void {

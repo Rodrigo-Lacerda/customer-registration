@@ -18,7 +18,12 @@ class Manager {
         });
     }
     order(newOrder) {
-        this.client.shoppingCart(newOrder);
+        this.clientList.forEach((c) => {
+            if (c.isActive() !== true) {
+                throw new Error(`User blocked...`);
+            }
+            this.client.shoppingCart(newOrder);
+        });
     }
     finalizeOrder(discount = 0) {
         let amount = 0;

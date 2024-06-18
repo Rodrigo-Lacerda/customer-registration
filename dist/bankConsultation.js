@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Cheking = void 0;
+exports.Check = void 0;
 const dbProducts_1 = require("./dbProducts");
-class Cheking {
+class Check {
     constructor() { }
-    // Verificar se o produto existe banco e retornar o produto.
     productExist(product) {
-        let s = dbProducts_1.DbProducts.filter(function (DbProducts) {
-            return DbProducts.name === product.name;
+        let newProd;
+        dbProducts_1.DbProducts.filter((prod) => {
+            if (prod.name === product.getName()) {
+                newProd = prod;
+            }
         });
-        if (s.length === 0) {
-            console.log("Product not exist...");
-        }
+        return newProd;
     }
 }
-exports.Cheking = Cheking;
+exports.Check = Check;

@@ -2,46 +2,42 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Client = void 0;
 class Client {
-    constructor(rg, name, age, points = 0, active = true, requestList = [], favoriteList = []) {
-        this.rg = rg;
+    constructor(name, document, dateOfBirth, points = 0) {
         this.name = name;
-        this.age = age;
+        this.document = document;
+        this.dateOfBirth = dateOfBirth;
         this.points = points;
-        this.active = active;
-        this.requestList = requestList;
-        this.favoriteList = favoriteList;
+        this.favoriteProducts = [];
+        this.myRequests = [];
+        this.active = true;
+    }
+    getClient() {
+        return this;
+    }
+    addToFavorite(product) {
+        this.favoriteProducts.push(product);
+    }
+    removeToFavorite(product) {
+        let newList = [];
+        this.favoriteProducts.filter((prod) => {
+            if (prod !== product) {
+                newList.push(prod);
+            }
+        });
+        this.favoriteProducts = [];
+        this.favoriteProducts = newList;
+    }
+    isActive(isActive) {
+        this.active = isActive;
+    }
+    getActive() {
+        return this.active;
+    }
+    addPoints() {
+        this.points += 100;
     }
     getPoints() {
         return this.points;
-    }
-    isActive() {
-        return this.active;
-    }
-    blocked() {
-        this.active = false;
-    }
-    shoppingCart(newRequest) {
-        this.requestList.push(newRequest);
-    }
-    getMyRequests() {
-        this.requestList.forEach((p) => {
-            console.log(p);
-        });
-    }
-    addToFavorite(newProduct) {
-        this.favoriteList.push(newProduct);
-    }
-    removeFavorite(product) {
-        let newList = this.favoriteList.filter((prodName) => prodName.name !== product.name);
-        if (this.favoriteList.length !== 0) {
-            this.favoriteList = [];
-        }
-        this.favoriteList = newList;
-    }
-    getFavoriteProducts() {
-        this.favoriteList.forEach((pf) => {
-            console.log(pf);
-        });
     }
 }
 exports.Client = Client;

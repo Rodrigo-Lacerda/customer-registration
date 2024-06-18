@@ -1,26 +1,20 @@
-import { DbProducts } from "./dbProducts"
+import { DbProducts } from "./dbProducts";
 import { Product } from "./product";
 
- 
-export class Cheking {
+export class Check {
     constructor(){}
 
-
-    // Verificar se o produto existe banco e retornar o produto.
     public productExist(product: Product): void {
-        
-        let s = DbProducts.filter(function( DbProducts: {
-            name: string,
-            price: number,
-            descripition: string,
-        }): boolean {
-            return DbProducts.name === product.name;
+        let newProd;
+        DbProducts.filter((prod) => {
+            if(prod.name === product.getName()) {
+                newProd = prod;
+            }
         })
 
-        if(s.length === 0) {
-            console.log("Product not exist...")
-        }
-
+        return newProd
     }
 
 }
+
+

@@ -1,57 +1,49 @@
-import { Product } from "./product";
+import { Product } from "./product"
 
 export class Client {
-    constructor(
-        private readonly rg: number,
-        private readonly name: string,
-        private readonly age: number,
-        private points: number = 0,
-        private active: boolean = true,
+  private favoriteProducts: Product[] = [];
+  private myRequests: Product[] = [];
+  private active: boolean = true;
 
-        private requestList: Product[] = [],
-        private favoriteList: Product[] = [],
-    ){}
+  constructor(
+    private readonly name: String,
+    private readonly document: number,
+    private readonly dateOfBirth: number,
+    private points: number = 0
+  ) {}
 
-    public getPoints(): number {
-        return this.points
-    }
+  public getClient(): Client {
+    return this;
+  }
 
-    public isActive(): boolean {
-        return this.active
-    }
+  public addToFavorite(product: Product): void {
+    this.favoriteProducts.push(product)
+  }
 
-    public blocked(): void {
-        this.active = false
-    }
+  public removeToFavorite(product: Product): void {
+    let newList: Product[] = []
+    this.favoriteProducts.filter((prod) => {
+      if(prod !== product) {
+        newList.push(prod)
+      }
+    })
+    this.favoriteProducts = []
+    this.favoriteProducts = newList
+  }
 
-    public shoppingCart(newRequest: Product): void {
-        this.requestList.push(newRequest)
-    }
+  public isActive(isActive: boolean): void {
+    this.active = isActive
+  }
 
-    public getMyRequests(): void {
-        this.requestList.forEach((p) => {
-            console.log(p)
-        })
-    }
+  public getActive(): boolean {
+    return this.active
+  }
 
-    public addToFavorite(newProduct: Product): void {
-        this.favoriteList.push(newProduct)
-    }
+  public addPoints(): void {
+    this.points += 100;
+  }
 
-    public removeFavorite(product: Product): void {
-        let newList = this.favoriteList.filter((prodName) => prodName.name !== product.name)
-        
-        if(this.favoriteList.length !== 0) {
-            this.favoriteList = []
-        }
-        this.favoriteList = newList
-    }
-
-    public getFavoriteProducts(): void {
-        this.favoriteList.forEach((pf) => {
-            console.log(pf)
-        })
-    }
-
+  public getPoints(): number {
+    return this.points
+  }
 }
-

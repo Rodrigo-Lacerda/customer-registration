@@ -1,35 +1,28 @@
-import { Client } from "./client";
 import { Manager } from "./manager";
+import { Client } from "./client";
 import { Product } from "./product";
 
+const p = new Product("Copo", 10, "Copo verde...")
+const p2 = new Product("Copo-2", 10, "Copo vermelho...")
+const p3 = new Product("Copo-3", 10, "Copo azul...")
+const pc = new Product("laptop", 1800, "core i7")
+// {name: "laptop", price: 1800, descripition: "core i7"},
 
-const r1 = new Client(1234, "Rodrigo", 30);
-const r2 = new Client(1234, "Lucas", 20);
-const m1 = new Manager(r1);
-const p = new Product("copo", 10, "copo de vidro");
-const pc = new Product("placa de video", 600, "amd rx580 8Gb");
-const pd = new Product("teclado", 100, "teclado mecanico");
-const pf = new Product("copo2", 15, "copo de vidro 2");
 
-m1.createClient(r1);
-m1.createClient(r2);
+const mg = new Manager()
+mg.createClient(new Client("Rodrigo", 12345678, 18041994));
 
-m1.order(p);
+const c = mg.getClientList(0)
 
-m1.addProductToKart(pc);
-m1.addProductToKart(p);
-m1.addProductToKart(pf);
+c.addToFavorite(p)
+c.addToFavorite(p2)
+c.addToFavorite(p3)
 
-m1.addProductToFavorite(pd, 0);
-m1.addProductToFavorite(p, 0);
-m1.addProductToFavorite(pf, 0);
-m1.addProductToFavorite(pc, 0);
 
-m1.removeToFavorite(0, pf);
+// remover está funcionando....
+// c.removeToFavorite(p2)
 
-// console.log(m1.getListOfFavoriteProducts(0))
-// console.log(m1.getProductsToKart())
+console.log(c.getClient())
 
-m1.finalizeOrder(40);
-console.log(m1.cusultOrder())
+console.log(mg.checkProduct(pc))
 

@@ -7,5 +7,8 @@ class Product {
         this.price = price;
         this.descripition = descripition;
     }
+    getName() {
+        return this.name;
+    }
 }
 exports.Product = Product;

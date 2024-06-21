@@ -10,5 +10,17 @@ class Product {
     getName() {
         return this.name;
     }
+    getPrice() {
+        return this.price;
+    }
+    setName(newName) {
+        this.name = newName;
+    }
+    setPrice(newPrice) {
+        this.price = newPrice;
+    }
+    setDescripition(newDecripition) {
+        this.descripition = newDecripition;
+    }
 }
 exports.Product = Product;

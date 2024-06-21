@@ -4,14 +4,17 @@ import { Product } from "./product";
 export class Check {
     constructor(){}
 
-    public productExist(product: Product): void {
-        let newProd;
+    public productExist(product: Product): Product {
+        let newProd: Product = new Product("", 0, "")
         DbProducts.filter((prod) => {
             if(prod.name === product.getName()) {
-                newProd = prod;
+                newProd.setName(prod.name)
+                newProd.setPrice(prod.price)
+                newProd.setDescripition(prod.descripition);     
             }
+            
         })
-
+     
         return newProd
     }
 
